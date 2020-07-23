@@ -340,7 +340,7 @@ class String(MutableString, Union):
 
     _fields_ = [("raw", POINTER(c_char)), ("data", c_char_p)]
 
-    def __init__(self, obj=""):
+    def __init__(self, obj=b""):
         if isinstance(obj, (bytes, UserString)):
             self.data = bytes(obj)
         else:
@@ -681,7 +681,7 @@ class PosixLibraryLoader(LibraryLoader):
                     if not m:
                         dirs.add(D)
                     else:
-                        for D2 in glob.glob(m["pattern"]):
+                        for D2 in glob.glob(m.group("pattern")):
                             self._get_ld_so_conf_dirs(D2, dirs)
         except IOError:
             pass
@@ -818,11 +818,17 @@ _libs["demolib.so"] = load_library("demolib.so")
 
 # No modules
 
-# /home/olsonse/src/ctypesgen/demo/demolib.h: 6
+# /home/jhryu/ProgramDev/VNN/ctypesgen/demo/demolib.h: 6
 if _libs["demolib.so"].has("trivial_add", "cdecl"):
     trivial_add = _libs["demolib.so"].get("trivial_add", "cdecl")
     trivial_add.argtypes = [c_int, c_int]
     trivial_add.restype = c_int
+
+# /home/jhryu/ProgramDev/VNN/ctypesgen/demo/demolib.h: 8
+if _libs["demolib.so"].has("trivial_array_add", "cdecl"):
+    trivial_array_add = _libs["demolib.so"].get("trivial_array_add", "cdecl")
+    trivial_array_add.argtypes = [POINTER(c_double), c_int, c_int]
+    trivial_array_add.restype = c_double
 
 # No inserted files
 
