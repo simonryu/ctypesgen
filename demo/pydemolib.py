@@ -827,7 +827,7 @@ if _libs["demolib.so"].has("trivial_add", "cdecl"):
 # /home/jhryu/ProgramDev/VNN/ctypesgen/demo/demolib.h: 8
 if _libs["demolib.so"].has("trivial_array_add", "cdecl"):
     trivial_array_add = _libs["demolib.so"].get("trivial_array_add", "cdecl")
-    trivial_array_add.argtypes = [POINTER(c_double), c_int, c_int]
+    trivial_array_add.argtypes = [POINTER(POINTER(c_double)), c_int, c_int]
     trivial_array_add.restype = c_double
 
 # No inserted files

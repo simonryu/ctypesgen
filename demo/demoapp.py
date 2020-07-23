@@ -46,12 +46,16 @@ def do_demo():
     print("m, n", m, n)
     print(data)
 
+
+    data_pointers = [numpy.ctypeslib.as_ctypes(x) for x in data]
+    data_pointers = (ctypes.POINTER(ctypes.c_double) * data.shape[0])(*data_pointers)
+
     # print(type(data_p))
     # print(type(ctypes.POINTER(ctypes.POINTER(ctypes.c_double))))
 
     # m = ctypes.c_int(x_train[0].shape[0])
     # n = ctypes.c_int(x_train[0].shape[1])
-    result2 = pydemolib.trivial_array_add(data_p, m, n)
+    result2 = pydemolib.trivial_array_add(data_pointers, m, n)
     print("result2", result2)
 
 def main(argv=None):

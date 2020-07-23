@@ -22,7 +22,7 @@ int trivial_add(int a, int b)
 }
 
 
-double trivial_array_add(double* arr, int m, int n)
+double trivial_array_add(double** arr, int m, int n)
 {
     printf("trivial_array_add \n");
     int i, j;
@@ -31,17 +31,17 @@ double trivial_array_add(double* arr, int m, int n)
     printf("before for-loop \n");
     printf("m: %d, n: %d \n", m, n);
     
-    for(i = 0;i < m*n;++i)
-        printf("arr[%d]: %f \t", i, arr[i]);
-    printf("\n");
+    // for(i = 0;i < m*n;++i)
+    //     printf("arr[%d]: %f \t", i, arr[i]);
+    // printf("\n");
 
-    // for(i = 0;i < m;++i)
-    // {
-    //     for(j = 0;j < n;++j)
-    //     {
-    //         sum += arr[i][j];
-    //     }        
-    // }
+    for(i = 0;i < m;++i)
+    {
+        for(j = 0;j < n;++j)
+        {
+            sum += arr[i][j];
+        }        
+    }
 
     return sum;
 }
